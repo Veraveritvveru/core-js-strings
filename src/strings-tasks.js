@@ -197,8 +197,8 @@ function sumOfCodes(str) {
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function startsWith(str, substr) {
+  return str.startsWith(substr);
 }
 
 /**
@@ -212,8 +212,8 @@ function startsWith(/* str, substr */) {
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function endsWith(str, substr) {
+  return str.endsWith(substr);
 }
 
 /**
@@ -309,8 +309,14 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const len = str.replace(/ /g, '').length;
+  for (let i = 0; i < len / 2; i += 1) {
+    if (str.replace(/ /g, '')[i] !== str.replace(/ /g, '')[len - i - 1]) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -325,8 +331,16 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const wordsList = sentence.trim().split(/\s+/);
+
+  let longestWord = '';
+  for (let i = 0; i < wordsList.length; i += 1) {
+    if (wordsList[i].length > longestWord.length) {
+      longestWord = wordsList[i];
+    }
+  }
+  return longestWord;
 }
 
 /**
