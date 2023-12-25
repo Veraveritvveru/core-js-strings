@@ -19,8 +19,11 @@
  *   getStringLength(null) => 0
  *   getStringLength(undefined) => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(value) {
+  if (typeof value !== 'string') {
+    return 0;
+  }
+  return value.length;
 }
 
 /**
@@ -38,7 +41,7 @@ function getStringLength(/* value */) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return typeof value === 'string';
+  return typeof value === 'string' || value instanceof String;
 }
 
 /**
@@ -131,6 +134,9 @@ function removeTrailingWhitespaces(value) {
  *   repeatString('abc', -2) => ''
  */
 function repeatString(str, times) {
+  if (times < 0) {
+    return '';
+  }
   return str.repeat(times);
 }
 
@@ -146,8 +152,8 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  return str.replace(value, '');
 }
 
 /**
@@ -179,6 +185,9 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes() => 0
  */
 function sumOfCodes(str) {
+  if (typeof str !== 'string') {
+    return 0;
+  }
   let sum = 0;
   for (let i = 0; i < str.length; i += 1) {
     sum += str.charCodeAt(i);
@@ -229,8 +238,10 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  const formatMinutes = minutes.toString().padStart(2, 0);
+  const formatSeconds = seconds.toString().padStart(2, 0);
+  return `${formatMinutes}:${formatSeconds}`;
 }
 
 /**
